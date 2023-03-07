@@ -32,7 +32,7 @@ def propagate(w, b, X, Y):
     return grads, cost
 
 
-def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=False):    
+def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost):    
     w = copy.deepcopy(w)
     b = copy.deepcopy(b)
     costs = []
@@ -79,7 +79,7 @@ def predict(w, b, X):
     return Y_prediction
 
 
-def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0.5, print_cost=False):
+def model(X_train, Y_train, X_test, Y_test, num_iterations, learning_rate, print_cost):
     w, b = initialize_with_zeros(X_train.shape[0])
     params, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)
     w = params["w"]
@@ -127,7 +127,6 @@ def main():
     image = image.reshape((1, num_px * num_px * 3)).T
     my_predicted_image = predict(logistic_regression_model["w"], logistic_regression_model["b"], image)
     print("y = " + str(np.squeeze(my_predicted_image)) + ", your algorithm predicts a \"" + classes[int(np.squeeze(my_predicted_image)),].decode("utf-8") +  "\" picture.")
-
 
 
 main()
